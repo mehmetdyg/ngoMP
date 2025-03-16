@@ -633,7 +633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 862296863}
-  - component: {fileID: 862296862}
+  - component: {fileID: 862296864}
   m_Layer: 0
   m_Name: SteamManager
   m_TagString: Untagged
@@ -641,18 +641,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &862296862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862296861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &862296863
 Transform:
   m_ObjectHideFlags: 0
@@ -668,6 +656,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &862296864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862296861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &892865953
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 892865956}
   - component: {fileID: 892865955}
   m_Layer: 5
-  m_Name: JoinGameButton
+  m_Name: JoinGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1381,7 +1381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1552398167}
-  - component: {fileID: 1552398166}
+  - component: {fileID: 1552398168}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -1389,19 +1389,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1552398166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552398165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 541b65c502a67c441a8b42dbf2a5c5b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomIdInput: {fileID: 0}
 --- !u!4 &1552398167
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1404,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552398168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552398165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541b65c502a67c441a8b42dbf2a5c5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomIdInput: {fileID: 0}
 --- !u!1 &1649610327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,7 +1850,7 @@ GameObject:
   - component: {fileID: 2134605049}
   - component: {fileID: 2134605048}
   m_Layer: 5
-  m_Name: StartGameButton
+  m_Name: StartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1919,7 +1919,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2134605049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 56e677b6a503b944cac61751df845cef, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &2134605049
 MonoBehaviour:
   m_ObjectHideFlags: 0
