@@ -1,31 +1,93 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Reference to the input field for the room ID
-    [SerializeField] private TMP_InputField roomIDInputField;
+    [SerializeField] private InputField roomIDInputField;
+    [SerializeField] private LobbyManager lobbyManager;
+    [SerializeField] private Text roomIdDisplayText;
+    [SerializeField] private Text statusText; // Durum mesajları için ek metin alanı
 
-    // Call this method when Start Game is pressed
-    public void OnStartGame()
+    void Start()
     {
-        // Call your LobbyManager or similar to host a game
-        Debug.Log("Starting game as host...");
+        // Başlangıçta metinleri temizle
+        if (roomIdDisplayText != null)
+            roomIdDisplayText.text = "Room ID: -";
+
+        if (statusText != null)
+            statusText.text = "";
+
+        // LobbyManager olaylarına abone ol
+        if (lobbyManager != null)
+        {
+            lobbyManager.OnRoomIdCreated += HandleRoomCreated;
+            lobbyManager.OnRoomJoinFailed += HandleRoomJoinFailed;
+            lobbyManager.OnRoomJoinSuccess += HandleRoomJoinSuccess;
+        }
     }
 
-    // Call this method when Join Game is pressed
+    // Oda ID oluşturulduğunda çağrılır
+    private void HandleRoomCreated(string roomId)
+    {
+        if (!string.IsNullOrEmpty(roomId))
+        {
+            roomIdDisplayText.text = "Room ID: " + roomId;
+            statusText.text = "Room created successfully!";
+            statusText.color = Color.green;
+        }
+        else
+        {
+            roomIdDisplayText.text = "Room ID: Failed";
+            statusText.text = "Failed to create room.";
+            statusText.color = Color.red;
+        }
+    }
+
+    // Odaya katılma başarısız olduğunda çağrılır
+    private void HandleRoomJoinFailed(string error)
+    {
+        statusText.text = "Error: " + error;
+        statusText.color = Color.red;
+    }
+
+    // Odaya başarılı şekilde katılınca çağrılır
+    private void HandleRoomJoinSuccess()
+    {
+        statusText.text = "Successfully joined the room!";
+        statusText.color = Color.green;
+    }
+
+    public void OnStartGame()
+    {
+        statusText.text = "Creating room...";
+        statusText.color = Color.yellow;
+        lobbyManager.HostGame();
+    }
+
     public void OnJoinGame()
     {
         string roomId = roomIDInputField.text;
         if (!string.IsNullOrEmpty(roomId))
         {
-            Debug.Log("Joining game with Room ID: " + roomId);
-            // Pass roomId to your LobbyManager for joining a game
+            statusText.text = "Joining room...";
+            statusText.color = Color.yellow;
+            lobbyManager.JoinGame(roomId);
         }
         else
         {
-            Debug.LogWarning("Room ID is empty!");
+            statusText.text = "Error: Room ID is empty!";
+            statusText.color = Color.red;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Abone olduğumuz olaylardan çıkış
+        if (lobbyManager != null)
+        {
+            lobbyManager.OnRoomIdCreated -= HandleRoomCreated;
+            lobbyManager.OnRoomJoinFailed -= HandleRoomJoinFailed;
+            lobbyManager.OnRoomJoinSuccess -= HandleRoomJoinSuccess;
         }
     }
 }
